@@ -1,0 +1,4 @@
+# B6-1 — Ubuntu 24.04 mission-specific APT packages
+# openssh-client is provided by the Control Tower Common Base.
+# Local Ubuntu packages support rehearsal; actual AWS resources/Evidence remain mandatory where required.
+nginx

@@ -1,0 +1,21 @@
+flowchart LR
+    Internet[External User / Internet]
+
+    subgraph AWS[AWS Region]
+      subgraph VPC[VPC 10.10.0.0/16]
+        IGW[Internet Gateway]
+        RT[Public Route Table\n0.0.0.0/0 → IGW]
+
+        subgraph PUB[Public Subnet 10.10.1.0/24]
+          SG[Security Group\n80: 0.0.0.0/0\n22: MY_IP/32]
+          EC2[EC2 Ubuntu\nNginx :80]
+        end
+      end
+    end
+
+    Internet -->|HTTP 80| IGW
+    Internet -->|SSH 22 from MY_IP/32| IGW
+    IGW --> RT
+    RT --> SG
+    SG --> EC2
+    EC2 -->|Outbound Internet| IGW
