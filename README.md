@@ -103,14 +103,25 @@ $ curl -o /dev/null -w "%{http_code}" http://54.180.237.44/health
 ```
 codyssey-b3-1/
 ├── README.md
+├── project.md                 # 프로젝트 가이드 및 실행 순서도
 ├── docs/
+│   ├── STUDY.md               # 미션 필수 기술 자료 및 개념 정리
+│   ├── EVAL_QA.md             # 평가 체크리스트 17문항 심층 Q&A
+│   ├── b3_1mission.md         # 원본 미션 요구사항 명세서
 │   ├── architecture.md        # 아키텍처 다이어그램 (Mermaid)
 │   ├── troubleshooting.md     # 트러블슈팅 보고서 (3건)
 │   └── cleanup-checklist.md   # 리소스 정리 체크리스트
 └── scripts/
+    ├── README.md              # scripts 디렉터리 가이드 및 상세 주석 해설서
     ├── iam-policy.json        # IAM 최소권한 정책
     └── user-data.sh           # EC2 Nginx 자동설치 스크립트
 ```
+
+## 기술 자료 및 학습 가이드
+
+- [docs/STUDY.md](docs/STUDY.md) — 클라우드 네트워킹(VPC, Subnet, IGW, Route Table), 보안(Security Group, IAM), 컴퓨팅(EC2, EBS, Nginx), 트러블슈팅 및 FinOps 핵심 기술 자료
+- [docs/EVAL_QA.md](docs/EVAL_QA.md) — 4개 영역 17개 평가 체크리스트에 대한 심층 해설 Q&A
+- [project.md](project.md) — 파일 트리 구조, 구성 요소별 역할, 파일 간 관계도 및 상세 실행 순서
 
 ## 리소스 정리
 
