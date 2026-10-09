@@ -14,6 +14,7 @@
 ├── .gitignore                 # Git 추적 제외 목록 (Python, OS 임시파일, 민감 파일 등)
 ├── docs/                      # 프로젝트 명세서 및 제출 산출물 문서
 │   ├── STUDY.md               # 미션 필수 기술 자료 및 핵심 개념 가이드
+│   ├── mission_QA.md          # b3_1mission.md 요구사항·목표·기능 전 항목 심층 질의응답 가이드
 │   ├── EVAL_QA.md             # 평가 체크리스트 17문항 심층 Q&A
 │   ├── b3_1mission.pdf        # 과제 원본 요구사항 명세서 (PDF)
 │   ├── b3_1mission.md         # 과제 원본 요구사항 명세서를 마크다운으로 변환한 문서
@@ -35,6 +36,7 @@
 | [README.md](file:///Users/mpeg46551/b3_1/README.md) | **프로젝트 메인 제출 문서**<br>- 인프라 환경 요약(서울 리전, t3.micro, Ubuntu 22.04 LTS, Nginx)<br>- 리소스 식별자(VPC, Subnet, IGW, Route Table, SG, EC2, IAM 유저)<br>- 방식 B(`GET http://54.180.237.44/health`) 외부 접속 검증 결과 및 curl 출력<br>- Security Group 인바운드/아웃바운드 규칙 요약 |
 | [project.md](file:///Users/mpeg46551/b3_1/project.md) | **프로젝트 종합 가이드**<br>- 전체 파일 트리 구조, 파일 역할, 상호 관계도, Mermaid 순서도 및 단계별 실행 매뉴얼 |
 | [docs/STUDY.md](file:///Users/mpeg46551/b3_1/docs/STUDY.md) | **미션 필수 기술 학습 가이드**<br>- VPC, Subnet, IGW, Route Table, Security Group, IAM, EC2, EBS, Nginx, FinOps 핵심 기술 개념 및 CLI 종합 정리 |
+| [docs/mission_QA.md](file:///Users/mpeg46551/b3_1/docs/mission_QA.md) | **미션 요구사항 심층 Q&A 가이드**<br>- `b3_1mission.md`의 미션 철학, 5대 학습 목표, 6대 기능 요구사항, 4대 결과물 규격, 제약사항 및 심화 면접 대비 전 문항 해설 |
 | [docs/EVAL_QA.md](file:///Users/mpeg46551/b3_1/docs/EVAL_QA.md) | **평가 체크리스트 17문항 심층 Q&A**<br>- 기능 동작 검증, 구조 설명, 핵심 개념, 확장 사고 및 트러블슈팅 전 문항 모범 답변 |
 | [MISSION-METADATA.yml](file:///Users/mpeg46551/b3_1/MISSION-METADATA.yml) | **미션 메타데이터 정의**<br>- 현재 미션 ID(`B3-1`), 이전 미션 ID(`B6-1`) 매핑<br>- 공식 미션 명칭(`내가 만든 웹사이트를 인터넷에 올려 누구나 쓰게 하기`)<br>- 공식 저장소 및 컨트롤 타워 맵 URL 정보 |
 | [docs/b3_1mission.pdf](file:///Users/mpeg46551/b3_1/docs/b3_1mission.pdf) | **과제 원본 PDF 요구사항 명세서**<br>- 미션 소개, 최종 4대 결과물 규격, 과제 목표, 기능 요구사항, 제약사항, 결과 예시 수록 |
