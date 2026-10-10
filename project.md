@@ -13,14 +13,22 @@
 ├── project.md                 # [본 문서] 프로젝트 구조, 파일 역할, 관계도, 실행 순서도 가이드
 ├── .gitignore                 # Git 추적 제외 목록 (Python, OS 임시파일, 민감 파일 등)
 ├── docs/                      # 프로젝트 명세서 및 제출 산출물 문서
+│   ├── architecture.png       # 인프라 아키텍처 다이어그램 이미지 (PNG)
+│   ├── architecture.md        # 아키텍처 명세서, 토폴로지, NACL/SG 설계, 트래픽 시퀀스
+│   ├── troubleshooting.md     # 4건의 트러블슈팅 및 라우팅 변경 영향 테스트 보고서 (원본 로그 포함)
+│   ├── cleanup-checklist.md   # 과금 방지를 위한 리소스 역순 정리 체크리스트 및 CLI/콘솔 스냅샷
+│   ├── EVAL_QA.md             # 평가 체크리스트 17문항 심층 Q&A (피드백 보완 사항 반영)
+│   ├── EVAL_aws_vpc_ec2_deploy.md # 공식 배포 실습 평가 체크리스트
 │   ├── STUDY.md               # 미션 필수 기술 자료 및 핵심 개념 가이드
 │   ├── mission_QA.md          # b3_1mission.md 요구사항·목표·기능 전 항목 심층 질의응답 가이드
-│   ├── EVAL_QA.md             # 평가 체크리스트 17문항 심층 Q&A
 │   ├── b3_1mission.pdf        # 과제 원본 요구사항 명세서 (PDF)
 │   ├── b3_1mission.md         # 과제 원본 요구사항 명세서를 마크다운으로 변환한 문서
-│   ├── architecture.md        # 아키텍처 구성도, IAM 구조도, 트래픽 흐름 시퀀스 (Mermaid)
-│   ├── troubleshooting.md     # 실제 발생 오류에 대한 3건의 트러블슈팅 분석 보고서
-│   └── cleanup-checklist.md   # 과금 방지를 위한 리소스 역순 정리 체크리스트 및 CLI 명령어
+│   └── visuals/               # 개념 이해를 돕는 시각 자료 다이어그램 6종
+├── evidence/                  # 외부 통신 검증 원본 데이터
+│   └── external-health.txt    # 외부 PC에서 실제 관측한 HTTP 200/OK 원본 텍스트 기록
+├── screenshots/               # 실제 AWS 콘솔/터미널/브라우저 스크린샷 37장
+│   ├── README.md              # 스크린샷 순서 및 상세 설명서
+│   └── user-provided/         # 관리자/청구/크레딧 등 보조 증빙 이미지 11장
 └── scripts/                   # 자동화 및 정책 스크립트
     ├── README.md              # scripts 디렉터리 가이드 및 상세 주석 해설서
     ├── iam-policy.json        # IAM 사용자 최소권한 인라인 정책 정의 (JSON)
@@ -33,17 +41,15 @@
 
 | 파일 경로 | 주요 역할 및 설명 |
 |---|---|
-| [README.md](file:///Users/mpeg46551/b3_1/README.md) | **프로젝트 메인 제출 문서**<br>- 인프라 환경 요약(서울 리전, t3.micro, Ubuntu 22.04 LTS, Nginx)<br>- 리소스 식별자(VPC, Subnet, IGW, Route Table, SG, EC2, IAM 유저)<br>- 방식 B(`GET http://54.180.237.44/health`) 외부 접속 검증 결과 및 curl 출력<br>- Security Group 인바운드/아웃바운드 규칙 요약 |
+| [README.md](file:///Users/mpeg46551/b3_1/README.md) | **프로젝트 메인 제출 문서**<br>- 아키텍처 PNG 및 Mermaid 인프라 다이어그램<br>- 방식 B(`GET /health`) 및 방식 A(브라우저) 외부 접속 검증 결과<br>- 서버 내부 SSH 접속 및 통신 검증 터미널 스냅샷<br>- Security Group 및 NACL 보안 규칙 요약<br>- 역순 자원 정리 CLI 반환 스냅샷 및 37장 스크린샷 갤러리 연결 |
 | [project.md](file:///Users/mpeg46551/b3_1/project.md) | **프로젝트 종합 가이드**<br>- 전체 파일 트리 구조, 파일 역할, 상호 관계도, Mermaid 순서도 및 단계별 실행 매뉴얼 |
-| [docs/STUDY.md](file:///Users/mpeg46551/b3_1/docs/STUDY.md) | **미션 필수 기술 학습 가이드**<br>- VPC, Subnet, IGW, Route Table, Security Group, IAM, EC2, EBS, Nginx, FinOps 핵심 기술 개념 및 CLI 종합 정리 |
-| [docs/mission_QA.md](file:///Users/mpeg46551/b3_1/docs/mission_QA.md) | **미션 요구사항 심층 Q&A 가이드**<br>- `b3_1mission.md`의 미션 철학, 5대 학습 목표, 6대 기능 요구사항, 4대 결과물 규격, 제약사항 및 심화 면접 대비 전 문항 해설 |
-| [docs/EVAL_QA.md](file:///Users/mpeg46551/b3_1/docs/EVAL_QA.md) | **평가 체크리스트 17문항 심층 Q&A**<br>- 기능 동작 검증, 구조 설명, 핵심 개념, 확장 사고 및 트러블슈팅 전 문항 모범 답변 |
-| [MISSION-METADATA.yml](file:///Users/mpeg46551/b3_1/MISSION-METADATA.yml) | **미션 메타데이터 정의**<br>- 현재 미션 ID(`B3-1`), 이전 미션 ID(`B6-1`) 매핑<br>- 공식 미션 명칭(`내가 만든 웹사이트를 인터넷에 올려 누구나 쓰게 하기`)<br>- 공식 저장소 및 컨트롤 타워 맵 URL 정보 |
-| [docs/b3_1mission.pdf](file:///Users/mpeg46551/b3_1/docs/b3_1mission.pdf) | **과제 원본 PDF 요구사항 명세서**<br>- 미션 소개, 최종 4대 결과물 규격, 과제 목표, 기능 요구사항, 제약사항, 결과 예시 수록 |
-| [docs/b3_1mission.md](file:///Users/mpeg46551/b3_1/docs/b3_1mission.md) | **마크다운 변환 미션 명세서**<br>- `b3_1mission.pdf`의 모든 텍스트, 표, 요구조건, 제약사항, 평가 기준을 완벽하게 마크다운 형태로 재구성하여 검색과 열람을 용이하게 함 |
-| [docs/architecture.md](file:///Users/mpeg46551/b3_1/docs/architecture.md) | **아키텍처 상세 다이어그램 산출물**<br>- VPC 내부 서브넷, 라우트 테이블, 보안 그룹, EC2 토폴로지 다이어그램<br>- Root 계정과 IAM 유저 간 최소 권한 허용/차단 구조도<br>- 외부 Client 요청이 EC2 Nginx에 도달하고 200 응답을 반환하는 시퀀스 다이어그램 |
-| [docs/troubleshooting.md](file:///Users/mpeg46551/b3_1/docs/troubleshooting.md) | **트러블슈팅 분석 보고서**<br>- 건 1: t2.micro 프리티어 오류 (`InvalidParameterCombination` 해결)<br>- 건 2: EC2 인스턴스 부팅 및 User-Data 실행 시차 대기 문제 해결<br>- 건 3: AWS SSO 프로파일과 직접 자격증명 IAM 유저 프로파일 충돌 방지 |
-| [docs/cleanup-checklist.md](file:///Users/mpeg46551/b3_1/docs/cleanup-checklist.md) | **과금 방지 리소스 정리 가이드**<br>- AWS 자원 의존성 역순 정리 순서(EC2 → EBS → KeyPair → SG → Subnet → RT → IGW → VPC → IAM)<br>- 각 단계별 실행 가능한 정확한 AWS CLI 명령어와 체크리스트 수록 |
+| [docs/architecture.png](file:///Users/mpeg46551/b3_1/docs/architecture.png) | **인프라 아키텍처 다이어그램 이미지**<br>- VPC, 서브넷, IGW, 라우팅 테이블, 보안 그룹, EC2의 토폴로지를 시각화한 PNG 파일 |
+| [docs/architecture.md](file:///Users/mpeg46551/b3_1/docs/architecture.md) | **아키텍처 상세 다이어그램 산출물**<br>- 아키텍처 PNG 이미지, NACL 및 SG 방화벽 설계, IAM 최소권한 흐름, 트래픽 시퀀스 다이어그램 |
+| [docs/troubleshooting.md](file:///Users/mpeg46551/b3_1/docs/troubleshooting.md) | **트러블슈팅 분석 보고서**<br>- 건 1: t2.micro 프리티어 오류 (`InvalidParameterCombination`)<br>- 건 2: EC2 인스턴스 부팅 및 User-Data 실행 시차 대기 문제 (원본 로그 수록)<br>- 건 3: AWS SSO 프로파일과 직접 자격증명 IAM 유저 프로파일 충돌 방지 (CloudTrail 로그)<br>- 건 4: 라우트 테이블 기본 경로 제거 및 복구 시 서비스 영향 실증 테스트 로그 |
+| [docs/cleanup-checklist.md](file:///Users/mpeg46551/b3_1/docs/cleanup-checklist.md) | **과금 방지 리소스 정리 가이드**<br>- AWS 자원 의존성 역순 정리 순서(EC2 → EBS → KeyPair → SG → Subnet → RT → IGW → VPC → IAM)<br>- 각 단계별 CLI 실제 JSON 반환값 및 대응 콘솔 스크린샷 링크 수록 |
+| [docs/EVAL_QA.md](file:///Users/mpeg46551/b3_1/docs/EVAL_QA.md) | **평가 체크리스트 17문항 심층 Q&A**<br>- 16개 평가 피드백 전 항목(NACL, ALB 연동, 태그 CLI, ARN 정책, SSM Session Manager, Flow Logs, 승인 체크리스트, Cost Explorer 쿼리 등)을 완벽 보완한 해설서 |
+| [evidence/external-health.txt](file:///Users/mpeg46551/b3_1/evidence/external-health.txt) | **외부 HTTP 헬스체크 원본 응답**<br>- 외부 Windows PC에서 curl로 호출한 `HTTP/1.1 200 OK` 및 본문 `OK` 원본 텍스트 기록 |
+| [screenshots/README.md](file:///Users/mpeg46551/b3_1/screenshots/README.md) | **스크린샷 순서 및 가이드**<br>- 실제 AWS 콘솔, 터미널, 브라우저 화면 37장 및 보조 증빙 11장의 순서별 해설 |
 | [scripts/README.md](file:///Users/mpeg46551/b3_1/scripts/README.md) | **스크립트 디렉터리 가이드 및 권한 해설**<br>- `scripts/` 내 파일 개요, `user-data.sh` 및 `iam-policy.json`의 49개 액션별 상세 주석 해설 |
 | [scripts/iam-policy.json](file:///Users/mpeg46551/b3_1/scripts/iam-policy.json) | **IAM 최소권한 정책 정의 파일**<br>- `AdministratorAccess`를 배제하고 실습에 필요한 EC2, VPC, Subnet, RouteTable, SecurityGroup, KeyPair, Address 등의 작업만 최소 허용 |
 | [scripts/user-data.sh](file:///Users/mpeg46551/b3_1/scripts/user-data.sh) | **EC2 User-Data 부트스트랩 스크립트**<br>- 인스턴스 최초 실행 시 `apt update`, Nginx 패키지 설치<br>- `/health` 요청에 `200 OK`를 반환하도록 Nginx 기본 사이트 설정 자동화<br>- `/` 요청에 환영 HTML 페이지 응답 설정 및 서비스 활성화 |
